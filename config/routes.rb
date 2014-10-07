@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   get '/help', to: "staticpages#help"
   get '/about', to: "staticpages#contact"
+
 end
