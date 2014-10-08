@@ -32,7 +32,11 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  STDOUT.sync = true
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost', port: ENV['PORT'] }
+
+  # User Letter Opener to preview emails in the browser instead of sending them via SMTP
+  config.action_mailer.delivery_method = :letter_opener
 end

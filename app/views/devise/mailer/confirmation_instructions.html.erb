@@ -1,0 +1,7 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>Thanks for joining the Hardtop Hounds!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm Hardtop Hounds account', confirmation_url(@resource, confirmation_token: @token) %></p>

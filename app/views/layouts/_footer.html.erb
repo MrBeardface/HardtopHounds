@@ -1,0 +1,35 @@
+<footer class="footer">
+	<div class="container-fluid">
+		<div class="row">
+			<ul class="footer-nav list-unstyled col-sm-3 hidden-xs">
+        <li><a href="/">Home</a></li>
+        <li><a href="/creations">Creations</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/forums">Forums</a></li>
+        <li><a href="/search/creations">Search</a></li>
+      </ul>
+      <ul class="footer-nav list-unstyled col-sm-3 col-xs-4">
+        <li><a href="/">About</a></li>
+        <li><a href="/creations">Help</a></li>
+        <li><a href="/blogs">Contact</a></li>
+      </ul>
+     <ul class="footer-nav list-unstyled col-sm-3 col-xs-4">
+        <li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+        <li><a href="/terms" title="Terms of Service">Terms of Service</a></li>
+        <li><a href="/guidelines" title="Community Guidelines">Community Guidelines</a></li>
+      </ul>
+      <ul class="list-unstyled col-sm-3 col-xs-4">
+        <li><i class="fa fa-fw fa-facebook footer-social-icon"></i> <a href="http://facebook.com/WoodworkingWeb">Facebook</a></li>
+        <li><i class="fa fa-fw fa-twitter footer-social-icon"></i> <a href="http://twitter.com/WoodworkingWeb">Twitter</a></li>
+        <li><i class="fa fa-fw fa-pinterest footer-social-icon"></i> <a href="http://pinterest.com/WoodworkingWeb">Pinterest</a></li>
+        <li><i class="fa fa-fw fa-google-plus footer-social-icon"></i> <a href="https://plus.google.com/+Woodworkingwebcom">Google+</a></li>
+      </ul>
+
+		</div>
+		<p>&copy; <%= Date.today.strftime('%Y') %> Mr. Beardface &amp; Co. All rights reserved.</p>	
+
+		<p class="site-disclaimer">DISCLAIMER: Any posts on HardtopHounds.com (HH) are posted by individuals acting in their own right and do not necessarily reflect the views of HH. HH will not be held liable for the actions of any user.</p>
+	</div>
+</footer>
+
+<%= render 'layouts/analytics' if Rails.env.production? %>
