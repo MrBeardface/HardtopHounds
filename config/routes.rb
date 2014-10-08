@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   get '/users/:id', to: 'users#show', as: :user
   resources :projects
+  resources :blogs
 end

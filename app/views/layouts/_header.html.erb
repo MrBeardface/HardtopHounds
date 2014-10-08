@@ -72,16 +72,13 @@
             </a>
             <ul class="dropdown-menu">
               <%= link_to new_project_path do %>
-              <li>
-                  New Project
-              </li>
+              <li>New Project</li>
               <% end %>
+              <%= link_to new_blog_path do %>
               <li>
                   New Blog Post
               </li>
-              <li>
-                  New Forum Topic
-              </li>
+              <% end %>
             </ul>
           </li>
         <% else %>

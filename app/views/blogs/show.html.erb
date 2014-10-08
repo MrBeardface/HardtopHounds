@@ -1,4 +1,4 @@
-<% provide(:title, @project.title) %>
+<% provide(:title, @blog.title) %>
 <div class="page-with-ads">    
   <div class="page">
     <div class="post-author">
@@ -14,17 +14,15 @@
       </div>
       
       <div class="post-author-info">
-        <p class="post-author-name"><%= link_to @project.user.username %></p>
-        <p class="post-author-stats"><small>User has some things<span class="post-author-time"> since <%= @project.user.created_at.strftime("%b %Y") %></span></small></p>
+        <p class="post-author-name"><%= link_to @blog.user.username %></p>
+        <p class="post-author-stats"><small>User has some things<span class="post-author-time"> since <%= @blog.user.created_at.strftime("%b %Y") %></span></small></p>
       </div>
     </div>
-
-  <h1>
-        <%= @project.title %>
+  
+    <h1>
+        <%= @blog.title %>
       </h1>
     </div>
     
-    <p class="lead"><%= @project.description %></p>
-
-    
-
+    <p class="lead"><%= @blog.description %></p>
+    <%= render partial: 'blog_controls' %>
