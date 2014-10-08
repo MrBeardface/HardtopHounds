@@ -1,0 +1,23 @@
+<% provide(:title, @project.title) %>
+<div class="page-with-ads">    
+  <div class="page">
+    <div class="post-author">
+      <div class="btn-group pull-right">
+              <a class="btn btn-sm btn-default btn-follow" data-loading-text="Following" data-method="post" data-remote="true" href="/followings/405" rel="nofollow" title="Follow">
+            <span class="hidden-xs"><i class="fa fa-plus"></i> Follow</span>
+            <span class="visible-xs"><i class="fa fa-plus"></i></span>
+              </a>
+            <a class="btn btn-sm btn-default" href="/received_messages/new/405" title="Send message">
+          <span class="hidden-xs"><i class="fa fa-envelope"></i> Message</span>
+          <span class="visible-xs"><i class="fa fa-envelope"></i></span>
+            </a>
+      </div>
+      
+      <div class="post-author-info">
+        <p class="post-author-name"><%= link_to @project.user.username %></p>
+        <p class="post-author-stats"><small>User has some things<span class="post-author-time"> since <%= @project.user.created_at.strftime("%b %Y") %></span></small></p>
+      </div>
+    </div>
+
+
+

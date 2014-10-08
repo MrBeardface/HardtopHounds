@@ -1,0 +1,14 @@
+<% provide(:title, 'New Project') %>
+
+<div class="page-header">
+  <h2>Add New Project</h2>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_for @project do |f| %>
+      <%= render 'shared/form_errors', object: f.object %>
+      <%= render 'form', f: f %>
+    <% end %>
+  </div>
+</div>

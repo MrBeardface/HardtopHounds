@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get '/about', to: 'staticpages#contact'
 
   get '/users/:id', to: 'users#show', as: :user
-
+  resources :projects
 end
