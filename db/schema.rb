@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008223743) do
+ActiveRecord::Schema.define(version: 20141009134654) do
 
   create_table "blogs", force: true do |t|
     t.text     "title"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20141008223743) do
 
   add_index "blogs", ["user_id", "created_at"], name: "index_blogs_on_user_id_and_created_at", using: :btree
 
+  create_table "forums", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "topics_count", default: 0, null: false
+  end
+
+  add_index "forums", ["created_at"], name: "index_forums_on_user_id_and_created_at", using: :btree
+
   create_table "projects", force: true do |t|
     t.text     "title"
     t.string   "description"
@@ -32,6 +41,17 @@ ActiveRecord::Schema.define(version: 20141008223743) do
   end
 
   add_index "projects", ["user_id", "created_at"], name: "index_projects_on_user_id_and_created_at", using: :btree
+
+  create_table "topics", force: true do |t|
+    t.text     "title"
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "forum_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topics", ["user_id", "forum_id", "created_at"], name: "index_topics_on_user_id_and_forum_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -55,6 +75,7 @@ ActiveRecord::Schema.define(version: 20141008223743) do
     t.string   "unconfirmed_email"
     t.integer  "projects_count",         default: 0,   null: false
     t.integer  "blogs_count",            default: 0,   null: false
+    t.integer  "topics_count",           default: 0,   null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

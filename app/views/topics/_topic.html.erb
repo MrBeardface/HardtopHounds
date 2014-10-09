@@ -1,0 +1,11 @@
+<%= div_for topic do %>
+  <div class="controls">
+      <%= link_to edit_topic_path(topic), class: 'btn btn-primary btn-xs' do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+  </div>
+  <h4>
+    <%= link_to topic.title, topic_path(topic) %>
+  </h4>
+  <p><small><%= time_ago_in_words(topic.created_at) %> ago.</small> <%= topic.description %></p>
+<% end %>

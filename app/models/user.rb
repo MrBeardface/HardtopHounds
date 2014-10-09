@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :projects, dependent: :destroy
   has_many :blogs, dependent: :destroy
+  has_many :topics, dependent: :destroy
   
   before_save { self.email = email.downcase }
 

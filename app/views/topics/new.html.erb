@@ -1,0 +1,38 @@
+<% provide(:title, "New Topic") %>
+
+<div class="page-header">
+  <h2>New Topic</h2>
+</div>
+
+<%= form_for @topic, :html => { :multipart => true } do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this forum topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	 <%= f.fields_for :forum do |f| %>
+	<div class="form-group">
+		<%= f.label :Pick_Forum, class: 'form-group' %>
+		<div class="controls">
+    	<%= collection_select(:topic, :forum_id, Forum.all, :id, :forum_name, {:multiple => false}) %><br>
+		</div>
+  </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.text_area :title, class: 'form-control input-lg', placeholder: 'Topic Title' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :description, rows: 4, class: 'form-control', placeholder: 'Topic Description' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: 'btn btn-success'%>
+  </div>
+<% end %>
