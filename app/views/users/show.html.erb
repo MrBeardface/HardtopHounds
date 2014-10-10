@@ -6,15 +6,20 @@
             
             
           </div>
-          <a class="member-picture post-author-picture pull-left" href="/TheBeard" title="TheBeard">
-            <i class="fa fa-user"></i>
+          <a class="member-picture post-author-picture pull-left">
+            <%= image_tag @user.avatar.url(:medium) %>
           </a>
           <div class="post-author-info">
             <p class="post-author-name"><%= link_to @user.username %></p>
+            <button type="button" class="btn btn-default btn-add-form-picture"><%= form_for @user, :url => user_path, :html => { :multipart => true } do |form| %>
+              <%= form.file_field :avatar %>
+              <i class="fa fa-picture-o"></i>
+            </button>
+            <% end %>
             <p class="post-author-stats"><small>User has some things<span class="post-author-time"> since <%= @user.created_at.strftime("%b %Y") %></span></small></p>
           </div>
         </div>
-
+            
 
         <ul class="nav nav-pills">
           <li><a href="/TheBeard/creations" title="Creations"><%= @user.projects_count %> Projects</a></li>
