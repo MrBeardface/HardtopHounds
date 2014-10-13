@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :blogs, dependent: :destroy
   has_many :topics, dependent: :destroy
+  has_one :avatar, dependent: :destroy
   
   before_save { self.email = email.downcase }
 
@@ -17,13 +18,26 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validate :password_confirmation, presence: true, length: { minimum: 6 }, on: :create
+  validates :password, length: {minimum: 6}, on: :update, allow_blank: true
+  validates :password_confirmation, length: {minimum: 6}, on: :update, allow_blank: true
+  
+  has_attached_file :avatar, :default_url => "/images/missing.png",
+    :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension",
+    :url  => "/:attachment/:id/:style/:basename.:extension", 
+      :styles => {
+        :thumb=> "100x100>"
+          }
+    validates_attachment :avatar
+    validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
+           size: { less_than: 5.megabytes }
+    validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/, /jpg\Z/, /gif\Z/]
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
-
+  def current_user=(user)
+    @current_user = user
+  end
+  
   def name 
     [first_name, last_name].join(' ')
   end

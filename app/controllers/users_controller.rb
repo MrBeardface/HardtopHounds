@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
+
 	def new
   	@user = User.new
-  end
-
-  def index
   end
 
   def show
@@ -15,12 +13,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      render layout: "home"
+      flash[:notice] = "Successfully updated your profile."
+      redirect_to @user
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -37,7 +34,7 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
   end
 
   def current_user=(user)
