@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
 	end
 
 	def show
+		 @fav_topic = @topic.favorited_by(current_user)
 	end
 
 	def new

@@ -8,6 +8,7 @@ class BlogsController < ApplicationController
   end
 
   def show
+    @fav_blog = @blog.favorited_by(current_user)
   end
 
   def new

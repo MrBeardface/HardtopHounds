@@ -12,7 +12,7 @@
           <span class="visible-xs"><i class="fa fa-envelope"></i></span>
             </a>
       </div>
-      
+      <div><%= render 'project_form' %></div>
       <div class="post-author-info">
         <p class="post-author-name"><%= link_to @project.user.username %></p>
         <p class="post-author-stats"><small>User has some things<span class="post-author-time"> since <%= @project.user.created_at.strftime("%b %Y") %></span></small></p>
@@ -26,6 +26,7 @@
     </div>
     
     <p class="lead"><%= @project.description %></p>
+
 
     
 

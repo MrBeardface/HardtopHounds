@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @fav_project = @project.favorited_by(current_user)
   end
 
   def new

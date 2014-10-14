@@ -12,7 +12,7 @@
           <span class="visible-xs"><i class="fa fa-envelope"></i></span>
             </a>
       </div>
-      
+      <div><%= render 'blog_form' %></div>
       <div class="post-author-info">
         <p class="post-author-name"><%= link_to @blog.user.username %></p>
         <p class="post-author-stats"><small>User has some things<span class="post-author-time"> since <%= @blog.user.created_at.strftime("%b %Y") %></span></small></p>

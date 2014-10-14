@@ -1,0 +1,22 @@
+<% if current_user %>
+  <% unless @project.user == current_user %>
+    <div id="favorite-form">
+    <% if @fav_project %>
+      <%= form_tag favorite_project_path(@fav_project), method: :delete do %>
+        <%= button_tag class: "btn btn-sm btn-default" do %>
+          <i class="fa fa-bookmark text-danger"></i>
+        <% end %>
+      <% end %>
+    
+    <% else %>
+
+      <%= form_tag favorite_projects_path, method: :post do %> 
+        <div><%= hidden_field_tag :project_id, @project.id %></div>
+        <%= button_tag class: "btn btn-sm btn-default" do %>
+          <i class="fa fa-bookmark text-success"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>
