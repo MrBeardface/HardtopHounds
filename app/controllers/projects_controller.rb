@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
 	before_filter :authenticate_user!, except: [:show, :index]
   before_filter :set_project, except: [:index, :new, :create]
+  impressionist
+  
 
   def index
     @projects = Project.find(:all)

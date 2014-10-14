@@ -18,10 +18,11 @@
         <p class="post-author-stats"><small>User has some things<span class="post-author-time"> since <%= @project.user.created_at.strftime("%b %Y") %></span></small></p>
       </div>
     </div>
+          <p class="project-views"><%= @project.project_views %></p>
+    <h1>
+      <%= @project.title %>
+    </h1>
 
-  <h1>
-        <%= @project.title %>
-      </h1>
     </div>
     
     <p class="lead"><%= @project.description %></p>

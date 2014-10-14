@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011182848) do
+ActiveRecord::Schema.define(version: 20141014010732) do
 
   create_table "blogs", force: true do |t|
     t.text     "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141011182848) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "blog_views",  default: 0, null: false
   end
 
   add_index "blogs", ["user_id", "created_at"], name: "index_blogs_on_user_id_and_created_at", using: :btree
@@ -28,9 +29,35 @@ ActiveRecord::Schema.define(version: 20141011182848) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "topics_count", default: 0, null: false
+    t.integer  "forum_views",  default: 0, null: false
   end
 
   add_index "forums", ["created_at"], name: "index_forums_on_user_id_and_created_at", using: :btree
+
+  create_table "impressions", force: true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", length: {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}, using: :btree
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
@@ -49,7 +76,8 @@ ActiveRecord::Schema.define(version: 20141011182848) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "photos_count", default: 0, null: false
+    t.integer  "photos_count",  default: 0, null: false
+    t.integer  "project_views", default: 0, null: false
   end
 
   add_index "projects", ["user_id", "created_at"], name: "index_projects_on_user_id_and_created_at", using: :btree
@@ -61,6 +89,7 @@ ActiveRecord::Schema.define(version: 20141011182848) do
     t.integer  "forum_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "topic_views", default: 0, null: false
   end
 
   add_index "topics", ["user_id", "forum_id", "created_at"], name: "index_topics_on_user_id_and_forum_id_and_created_at", using: :btree

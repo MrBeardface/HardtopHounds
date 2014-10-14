@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
 	before_filter :authenticate_user!, except: [:show, :index]
   before_filter :set_topic, except: [:index, :new, :create]
+  impressionist
 
 	def index
 		@topics = Topic.all

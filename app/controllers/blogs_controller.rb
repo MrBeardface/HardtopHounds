@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
 	before_filter :authenticate_user!, except: [:show, :index]
   before_filter :set_blog, except: [:index, :new, :create]
+  impressionist
 
 	def index
     @blogs = Blog.find(:all)
