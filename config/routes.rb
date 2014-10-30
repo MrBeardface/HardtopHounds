@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get '/about', to: 'staticpages#contact'
 
   get '/users/:id', to: 'users#show', as: :user
+  post '/projects/add_journal', to: 'projects#add_journal'
+  delete '/projects/remove_journal', to: 'projects#remove_journal'
+
   resources :projects
   resources :blogs
   resources :forums, only: [:new, :create, :show, :index]

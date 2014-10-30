@@ -8,10 +8,21 @@
   <small>If you're having problems adding your pictures, please email us at <a href="mailto:info@hardtophounds.com">info@hardtophounds.com</a></small>.
 </p>
 
-<div class="form-group">
-	
-</div>
-
+<%= f.fields_for :journal do |p| %>
+	<div class="form-group">
+  	<div class="journal-dropdown">
+  		<%= collection_select(:project, :journal_id, current_user.journals.all, :id, :things, {:include_blank => 'No Series Selected'}, {:multiple => false}) %><br>
+		</div>
+		<div id="add_journal" >
+			<a class="btn btn-xs btn-default" href="#">Add Series Name</a>
+		</div>
+		<% unless Journal.where('projects_count >= ?', 1) %>
+			<div id="remove_journal"> 
+				<a class="btn btn-xs btn-default" href="#">Remove Series Name</a>
+			</div>
+		<% end %>
+  </div>
+<% end %>
 
 <div class="form-group">
   <%= f.text_field :title, class: 'form-control input-lg', placeholder: 'Project Title' %>

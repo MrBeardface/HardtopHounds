@@ -1,6 +1,6 @@
 class Blog < ActiveRecord::Base
 	belongs_to :user, counter_cache: true
-	has_many :favorite_blogs
+	has_many :favorite_blogs, dependent: :destroy
 
 	is_impressionable :counter_cache => true, :column_name => :blog_views
 

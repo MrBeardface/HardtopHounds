@@ -1,5 +1,5 @@
 class Forum < ActiveRecord::Base
-	has_many :topics
+	has_many :topics, dependent: :destroy
 	is_impressionable :counter_cache => true, :column_name => :forum_views
 
 	accepts_nested_attributes_for :topics

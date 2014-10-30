@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :blogs, dependent: :destroy
   has_many :topics, dependent: :destroy
+  has_many :journals, dependent: :destroy
   has_many :favorite_projects, dependent: :destroy
   has_many :favorite_blogs, dependent: :destroy
   has_many :favorite_topics, dependent: :destroy

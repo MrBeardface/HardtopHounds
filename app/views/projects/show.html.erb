@@ -26,6 +26,11 @@
     </div>
     
     <p class="lead"><%= @project.description %></p>
+     <div class="controls">
+  <%= link_to edit_project_path(@project), class: 'btn btn-primary btn-xs' do %>
+    <i class="fa fa-pencil"></i>
+  <% end %>
+</div>
 
 
     

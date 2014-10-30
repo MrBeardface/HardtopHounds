@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014223501) do
+ActiveRecord::Schema.define(version: 20141029164317) do
 
   create_table "blogs", force: true do |t|
     t.text     "title"
-    t.string   "description"
+    t.text     "description"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,6 +24,22 @@ ActiveRecord::Schema.define(version: 20141014223501) do
   end
 
   add_index "blogs", ["user_id", "created_at"], name: "index_blogs_on_user_id_and_created_at", using: :btree
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "favorite_blogs", force: true do |t|
     t.integer  "user_id"
@@ -90,6 +106,16 @@ ActiveRecord::Schema.define(version: 20141014223501) do
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", length: {"impressionable_type"=>nil, "message"=>255, "impressionable_id"=>nil}, using: :btree
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
+  create_table "journals", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "projects_count", default: 0, null: false
+    t.string   "name"
+  end
+
+  add_index "journals", ["user_id", "created_at"], name: "index_journals_on_user_id_and_created_at", using: :btree
+
   create_table "photos", force: true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -110,13 +136,14 @@ ActiveRecord::Schema.define(version: 20141014223501) do
     t.integer  "photos_count",            default: 0, null: false
     t.integer  "project_views",           default: 0, null: false
     t.integer  "favorite_projects_count", default: 0, null: false
+    t.integer  "journal_id",              default: 0, null: false
   end
 
   add_index "projects", ["user_id", "created_at"], name: "index_projects_on_user_id_and_created_at", using: :btree
 
   create_table "topics", force: true do |t|
     t.text     "title"
-    t.string   "description"
+    t.text     "description"
     t.integer  "user_id"
     t.integer  "forum_id"
     t.datetime "created_at"

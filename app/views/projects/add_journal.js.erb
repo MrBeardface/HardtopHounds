@@ -1,0 +1,11 @@
+<% if !@journal.errors.any? %>
+	journal = '<option value="<%= @journal.id %>"><%= @journal.name %></option>'
+	selector = "#project_journal_id"
+
+	selected = $(selector).prepend(journal)
+
+	//remove selected one
+	$('option:selected', 'select').removeAttr('selected');
+	//Using the value
+	$('select').find('option[value="<%= @journal.id %>"]').attr("selected",true);
+<% end %>
