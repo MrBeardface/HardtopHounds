@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dfiiw0jdw
+  api_key: '283175266941796'
+  api_secret: k12bx-1-rOk4wZ2XZCW0ho88GGI
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dfiiw0jdw
+  api_key: '283175266941796'
+  api_secret: k12bx-1-rOk4wZ2XZCW0ho88GGI
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dfiiw0jdw
+  api_key: '283175266941796'
+  api_secret: k12bx-1-rOk4wZ2XZCW0ho88GGI
+  enhance_image_tag: true
+  static_image_support: false

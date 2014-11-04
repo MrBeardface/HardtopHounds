@@ -110,18 +110,62 @@
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   }
 
-  .btn-xs, .btn-group-xs>.btn {
-    padding: 1px 5px;
-    font-size: 15px;
-    line-height: 1.5;
-    border-radius: 3px;
+  .btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 16.5px;
+    line-height: 1.428571429;
+    border-radius: 4px;
   }
+
+  .form-picture {
+    width: 20%;
+    max-width: 112px;
+    padding: 6px;
+    text-align: center;
+  }
+
 
   .btn-default {
     color: #777777;
     background-color: #e7e7e7;
     border-color: white;
   }
+
+  .btn-xs, .btn-group-xs>.btn {
+    padding: 1px 5px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 3px;
+  }
+  
+  .new-form-picture { 
+    position: relative;
+  }
+
+  .cloudinary-fileupload { 
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .form-picture-fileupload { 
+    opacity: 0.0;
+    cursor: pointer;
+    position: absolute;
+    top: 0px; left: 0px; 
+    width: 130px; 
+    height: 40px;
+  }
+ 
   
   /* Side Banner One
   ----------------------------------------*/
@@ -172,6 +216,35 @@
   }
 }
 
+  /* User Show Page
+  ----------------------------------------*/
+
+  .member-picture {
+    width: 52px;
+    height: 52px;
+    font-size: 44px;
+    line-height: 50px;
+    border-radius: 6px;
+    color: #999;
+    background: #e7e7e7;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* Image Upload
+  ----------------------------------------*/
+
+  .upload_details { 
+    font-size: 12px; 
+    margin: 20px; 
+    border-top: 1px solid #ccc; 
+    word-wrap: break-word;
+  }
+  
+  .preview { 
+    position: relative; 
+  }
+ 
 @media (min-width: 769px) and (max-width: 1099px)  {
 
   /* Premium Banner
@@ -252,6 +325,8 @@
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   }
+
+
 
   /* Side Banner One
   ----------------------------------------*/

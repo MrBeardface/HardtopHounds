@@ -10,6 +10,23 @@
 <div class="row">
   <div class="col-xs-12">
     <%= render 'shared/form_errors', object: f.object %>
+      <div class="form-group">
+        <div class="form-pictures">
+          <div class="form-picture">
+            <%= image_tag @user.avatar_url(:display) if @user.avatar_url.present? %><br> 
+          </div>
+        </div>
+        
+        <div class="new-form-picture">
+          <button class="btn btn-default btn-add-form-picture" name="button" title="Add picture" type="button">
+            <i class="fa fa-picture-o"> Add Picture </i>
+          </button>
+            <%= f.cl_image_upload(:avatar, :format => "jpg", :html => {:class => "form-picture-fileupload", :tabindex => "-1"}) %>
+          
+       </div>
+       
+      <span class="status"></span>
+    </div>
 
     <div class="row">
       <div class="col-sm-6">
@@ -44,37 +61,27 @@
         </div>
       </div>
 
-      <div class="col-sm-6">
-        <div class="well well-sm">
-          <div class="form-group">
-            <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
-            <p class="help-block">leave blank if you don't want to change it</p>
-          </div>
+    <div class="col-sm-6">
+      <div class="well well-sm">
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
+          <p class="help-block">leave blank if you don't want to change it</p>
+        </div>
 
-          <div class="form-group">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
-          </div>
-          
-          <div class="form-group">
-            <%= f.label :avatar %>
-            <%= f.file_field :avatar %>
-          </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
+        </div>
       </div>
     </div>
   </div>
-
     <hr>
-
     <div class="row">
       <div class="col-xs-12">
         <%= f.button 'Update', class: 'btn btn-success', data: { disable_with: 'Please wait...' } %>
-
       </div>
-    </div>
-    
+    </div> 
   </div>
 </div>
-
 <% end %>

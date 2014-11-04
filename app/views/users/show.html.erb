@@ -7,15 +7,15 @@
             
           </div>
           <a class="member-picture post-author-picture pull-left">
-            <% if @user.avatar_file_name == nil %>
-              <%=  link_to "add profile picture here", edit_user_registration_path %>
+            <% if @user.avatar.present? %>
+              <%= cl_image_tag @user.avatar_url(:thumbnail) %><br />
             <% else %>
-              <%= image_tag @user.avatar.url(:thumb) %>
+              <i class="fa fa-user"></i>
             <% end %>
           </a>
           <div class="post-author-info">
             <p class="post-author-name"><%= link_to @user.username %></p>
-            <p class="post-author-stats"><small>User has some things<span class="post-author-time"> since <%= @user.created_at.strftime("%b %Y") %></span></small></p>
+            <p class="post-author-stats"><small>  User has some things<span class="post-author-time"> since <%= @user.created_at.strftime("%b %Y") %></span></small></p>
           </div>
         </div>
             

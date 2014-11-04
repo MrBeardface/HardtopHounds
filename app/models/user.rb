@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :favorite_projects, dependent: :destroy
   has_many :favorite_blogs, dependent: :destroy
   has_many :favorite_topics, dependent: :destroy
+
+  mount_uploader :avatar, AvatarUploader
   
   before_save { self.email = email.downcase }
 
@@ -26,17 +28,6 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6}, on: :update, allow_blank: true
   validates :password_confirmation, length: {minimum: 6}, on: :update, allow_blank: true
   
-  has_attached_file :avatar, :default_url => "/images/missing.png",
-    :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension",
-    :url  => "/:attachment/:id/:style/:basename.:extension", 
-      :styles => {
-        :thumb=> "100x100>"
-          }
-    validates_attachment :avatar
-    validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
-           size: { less_than: 5.megabytes }
-    validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/, /jpg\Z/, /gif\Z/]
-
   def current_user=(user)
     @current_user = user
   end

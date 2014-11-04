@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < Devise::RegistrationsController
 
 	def new
   	@user = User.new
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = User.new(user_params)
+  @user = User.new(user_params)
   	if @user.save
   		sign_in @user
   		flash[:success] = "Welcome to Hardtop Hounds"
@@ -32,9 +32,16 @@ class UsersController < ApplicationController
   	end
   end
 
+  def remove_avatar
+    @user = User.find(params[:id])
+    @avatar = @user.find(params[:avatar])
+    @avatar.destroy
+  end
+
 private
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
+
+   def user_params
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :avatar)
   end
 
   def current_user=(user)
