@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
   has_many :favorite_projects, dependent: :destroy
   has_many :favorite_blogs, dependent: :destroy
   has_many :favorite_topics, dependent: :destroy
-
-  mount_uploader :avatar, AvatarUploader
+  has_one :profile, dependent: :destroy
   
   before_save { self.email = email.downcase }
+  after_create :build_profile
 
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }
@@ -34,5 +34,9 @@ class User < ActiveRecord::Base
   
   def name 
     [first_name, last_name].join(' ')
+  end
+
+  def build_profile
+    @profile = Profile.create(user: self)
   end
 end

@@ -10,24 +10,6 @@
 <div class="row">
   <div class="col-xs-12">
     <%= render 'shared/form_errors', object: f.object %>
-      <div class="form-group">
-        <div class="form-pictures">
-          <div class="form-picture">
-            <%= image_tag @user.avatar_url(:display) if @user.avatar_url.present? %><br> 
-          </div>
-        </div>
-        
-        <div class="new-form-picture">
-          <button class="btn btn-default btn-add-form-picture" name="button" title="Add picture" type="button">
-            <i class="fa fa-picture-o"> Add Picture </i>
-          </button>
-            <%= f.cl_image_upload(:avatar, :format => "jpg", :html => {:class => "form-picture-fileupload", :tabindex => "-1"}) %>
-          
-       </div>
-       
-      <span class="status"></span>
-    </div>
-
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">

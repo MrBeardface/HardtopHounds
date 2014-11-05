@@ -36,7 +36,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <%= link_to current_user do %>
+                <%= link_to profile_path(current_user.profile) do %>
                   <i class="fa fa-fw fa-user"></i> My Profile
                 <% end %>
               </li>
@@ -52,8 +52,13 @@
               </li>
               <li class="divider"></li>
               <li>
-                <%= link_to edit_user_path(current_user) do %>
+                <%= link_to edit_user_registration_path do %>
                   <i class="fa fa-fw fa-cog"></i> Edit Settings
+                <% end %>
+              </li>
+               <li>
+                <%= link_to edit_profile_path(current_user.profile) do %>
+                  <i class="fa fa-fw fa-cog"></i> Edit Profile
                 <% end %>
               </li>
               <li class="divider"></li>

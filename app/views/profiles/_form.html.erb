@@ -1,0 +1,25 @@
+<div class="form-group">
+	<div class="form-pictures">
+    <div class="form-picture" data-picture-id="<%= @profile.id %>">
+      <%= image_tag @profile.avatar_url(:display) if @profile.avatar_url.present? %><br> 
+    </div>
+  </div>
+  
+  <div class="new-form-picture">
+    <button class="btn btn-default btn-add-form-picture" name="button" title="Add picture" type="button">
+      <i class="fa fa-picture-o"> Add Picture </i>
+    </button>
+      <%= f.cl_image_upload(:avatar, :format => "jpg", :html => {:class => "form-picture-fileupload", :tabindex => "-1"}, :data => { :file_size => 1.megabyte.to_i}) %>
+ 		</div>
+	<span class="status"></span>
+</div>
+
+<div class="form-group">
+  <%= f.text_field :website, class: 'form-control input-lg', placeholder: 'Website' %>
+</div>
+
+<div class="form-group">
+  <%= f.text_area :profile, rows: 5, class: 'form-control', placeholder: 'User Profile' %>
+</div>
+
+<%= f.submit class: 'btn btn-success' %>

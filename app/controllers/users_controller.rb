@@ -1,5 +1,5 @@
-class UsersController < Devise::RegistrationsController
-
+class UsersController < ApplicationController
+  
 	def new
   	@user = User.new
   end
@@ -26,22 +26,15 @@ class UsersController < Devise::RegistrationsController
   	if @user.save
   		sign_in @user
   		flash[:success] = "Welcome to Hardtop Hounds"
-  		redirect_to @user
   	else
   		render 'new'
   	end
   end
 
-  def remove_avatar
-    @user = User.find(params[:id])
-    @avatar = @user.find(params[:avatar])
-    @avatar.destroy
-  end
-
 private
 
-   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :avatar)
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :profile_id)
   end
 
   def current_user=(user)

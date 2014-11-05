@@ -3,20 +3,25 @@
       <div class="page">      
         <div class="post-author">
           <div class="btn-group pull-right">
-            
-            
-          </div>
+            <a class="member-picture post-author-picture pull-left">
+            <% if @profile.avatar.present? %>
+              <%= cl_image_tag @profile.avatar_url(:thumbnail) %><br />
+            <% else %>
+              <i class="fa fa-user"></i>
+            <% end %>
+          </a>    
+        </div>
           
           <div class="post-author-info">
-            <p class="post-author-name"><%= link_to @user.username %></p>
-            <p class="post-author-stats"><small>  User has some things<span class="post-author-time"> since <%= @user.created_at.strftime("%b %Y") %></span></small></p>
+            <p class="post-author-name"><%= link_to current_user.username %></p>
+            <p class="post-author-stats"><small>  User has some things<span class="post-author-time"> since <%= current_user.created_at.strftime("%b %Y") %></span></small></p>
           </div>
         </div>
             
 
         <ul class="nav nav-pills">
-          <li><a href="/TheBeard/creations" title="Creations"><%= @user.projects_count %> Projects</a></li>
-          <li><a href="/TheBeard/blogs" title="Blog"><%=@user.blogs_count %> Blog Post</a></li>
+          <li><a href="/TheBeard/creations" title="Creations"><%= current_user.projects_count %> Projects</a></li>
+          <li><a href="/TheBeard/blogs" title="Blog"><%=current_user.blogs_count %> Blog Post</a></li>
           <li><a href="/TheBeard/topics" title="Forum topics">0 topics</a></li>
           <li><a href="/TheBeard/followers" title="Followers">0 followers</a></li>
           <li><a href="/TheBeard/followeds" title="Following">0 following</a></li>
@@ -32,5 +37,7 @@
           </li>
         </ul>
 
-
-        
+        <div class="Profile">
+          <p class="website"><%= link_to @profile.website %></p>
+          <p class="prodile"><%= link_to @profile.profile %></p>
+        </div>
