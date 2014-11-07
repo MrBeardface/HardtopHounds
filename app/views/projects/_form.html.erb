@@ -8,21 +8,46 @@
   <small>If you're having problems adding your pictures, please email us at <a href="mailto:info@hardtophounds.com">info@hardtophounds.com</a></small>.
 </p>
 
-<%= f.fields_for :journal do |p| %>
-	<div class="form-group">
-  	<div class="journal-dropdown">
-  		<%= collection_select(:project, :journal_id, current_user.journals.all, :id, :things, {:include_blank => 'No Series Selected'}, {:multiple => false}) %><br>
-		</div>
-		<div id="add_journal" >
-			<a class="btn btn-xs btn-default" href="#">Add Series Name</a>
-		</div>
-		<% unless Journal.where('projects_count >= ?', 1) %>
-			<div id="remove_journal"> 
-				<a class="btn btn-xs btn-default" href="#">Remove Series Name</a>
-			</div>
-		<% end %>
+
+
+<%= f.fields_for :photos, :html => {:multipart => true} do |j| %>
+  <div class="form-group">
+    <div class="project-form-pictures" data-max-pictures="5">
+      <% @project.photos.each do |photo| %>
+        <% if photo.present? %>
+          <div class="project-form-picture">
+            <%= cl_image_tag photo.image_url(:display)%>
+            <% end %><br> 
+          </div>
+    </div>
   </div>
 <% end %>
+
+  <div class="new-project-form-picture">
+    <button class="btn btn-default btn-add-form-picture" name="button" title="Add picture" type="button">
+    <i class="fa fa-picture-o"> Add Picture </i>
+    </button>
+    <%= j.cl_image_upload(:image, :format => "jpg", :html => {:tabindex => "-1", :multiple => true} , :use_filename => true, :folder => "project_photos") %>
+  </div>
+  <span class="update"></span>
+<% end %>
+
+<%= f.fields_for :journal do |p| %>
+  <div class="form-group">
+    <div class="journal-dropdown">
+      <%= collection_select(:project, :journal_id, current_user.journals.all, :id, :things, {:include_blank => 'No Series Selected'}, {:multiple => false}) %><br>
+    </div>
+    <div id="add_journal" >
+      <a class="btn btn-xs btn-default" href="#">Add Series Name</a>
+    </div>
+    <% unless Journal.where('projects_count >= ?', 1) %>
+      <div id="remove_journal"> 
+        <a class="btn btn-xs btn-default" href="#">Remove Series Name</a>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
 
 <div class="form-group">
   <%= f.text_field :title, class: 'form-control input-lg', placeholder: 'Project Title' %>

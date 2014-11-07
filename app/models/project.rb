@@ -2,6 +2,9 @@ class Project < ActiveRecord::Base
 	belongs_to :user, counter_cache: true
   belongs_to :journal, counter_cache: true
 	has_many :favorite_projects, dependent: :destroy
+  has_many :photos, dependent: :destroy
+
+  accepts_nested_attributes_for :photos
 
 	is_impressionable :counter_cache => true, :column_name => :project_views
 

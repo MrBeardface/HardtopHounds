@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
   before_filter :set_project, except: [:index, :new, :create, :add_journal, :remove_journal]
   impressionist
   
-
   def index
     @projects = Project.find(:all)
   end
@@ -14,6 +13,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @project.photos.build
     @has_projects = Journal.where('projects_count >= ?', 1)
   end
 
@@ -59,7 +59,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:title, :description, :journal_id)
+    params.require(:project).permit(:title, :description, :journal_id, photos_attributes: [:user_id, :project_id, :image, :image_cache ])
   end
 
   def set_project

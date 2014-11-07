@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :favorite_projects, dependent: :destroy
   has_many :favorite_blogs, dependent: :destroy
   has_many :favorite_topics, dependent: :destroy
+  has_many :photos, dependent: :destroy
   has_one :profile, dependent: :destroy
   
   before_save { self.email = email.downcase }

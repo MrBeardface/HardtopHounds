@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104153507) do
+ActiveRecord::Schema.define(version: 20141105162927) do
 
   create_table "blogs", force: true do |t|
     t.text     "title"
@@ -99,6 +99,16 @@ ActiveRecord::Schema.define(version: 20141104153507) do
   end
 
   add_index "journals", ["user_id", "created_at"], name: "index_journals_on_user_id_and_created_at", using: :btree
+
+  create_table "photos", force: true do |t|
+    t.text     "image"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["project_id", "user_id"], name: "index_photos_on_project_id_and_user_id", using: :btree
 
   create_table "profiles", force: true do |t|
     t.text     "website"

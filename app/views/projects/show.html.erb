@@ -26,6 +26,11 @@
     </div>
     
     <p class="lead"><%= @project.description %></p>
+
+    <% @project.photos.each do |photo| %>
+      <p><%= image_tag photo.image_url(:display) if photo.present? %></p>
+    <% end %>
+
      <div class="controls">
   <%= link_to edit_project_path(@project), class: 'btn btn-primary btn-xs' do %>
     <i class="fa fa-pencil"></i>
