@@ -59,7 +59,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:title, :description, :journal_id, photos_attributes: [:user_id, :project_id, :image, :image_cache ])
+    params.require(:project).permit(:title, :description, :journal_id, photos_attributes: [:project_id])
   end
 
   def set_project

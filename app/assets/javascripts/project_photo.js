@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $(".cloudinary-fileupload").fileupload({
+  $(".cloudinary-fileupload").cloudinary_fileupload({
+    sequentialUploads: true,
     start: function(e) {
         $(".update").text("Starting upload...");
       },
@@ -10,15 +11,16 @@ $(document).ready(function() {
         $(".update").text("Upload failed");
       }
     }).off(".cloudinarydone").on("cloudinarydone", function(e, data) {
-      if ($(".project-form-picture").length <= 5) {
+      if ($(".project-form-picture > img").length < 5) {
         $(".update").text("");
-        preview = $(".project-form-picture").html("");
-        $.cloudinary.image(data.result.public_id, {
-          format: data.result.format,
-          width: 100,
-          height: 100,
-          crop: "fill"
-        }).appendTo(preview).hide().fadeIn(2000);
+        preview = $(".project-form-picture");
+        // html = $("project[photos_attributes][count++][image]")
+          $.cloudinary.image(data.result.public_id, {
+            format: data.result.format,
+            width: 100,
+            height: 100,
+            crop: "fill"
+          }).appendTo(preview).hide().fadeIn(2000);
         delete_button = $("<a href='#'' id='remove-project-photo' class='btn btn-xs btn-danger btn-remove-form-picture'><i class='fa fa-trash-o'></i></a>");
         $(delete_button).appendTo(".project-form-picture");
       } else {
